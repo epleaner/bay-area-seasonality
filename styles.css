@@ -33,6 +33,8 @@ button { color: inherit; }
 .site-header { width: min(var(--max-width), calc(100% - 3rem)); margin: 0 auto; padding: 1.35rem 0 1.1rem; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--rule); }
 .brand-lockup, .text-button, .section-kicker, .month-selector__hint, .filter-button, .search-field, .result-count, .category-label, .season-chip, .footer-meta, .source-list__meta, .dialog-footnote { font-family: var(--utility); font-size: .68rem; letter-spacing: .08em; text-transform: uppercase; }
 .brand-lockup { color: var(--muted); font-weight: 500; }
+.text-button { border: 0; padding: 0; background: transparent; color: var(--muted); cursor: pointer; opacity: .62; }
+.text-button:hover { color: var(--accent); opacity: 1; }
 
 .page-shell { width: min(var(--max-width), calc(100% - 3rem)); margin: 0 auto; }
 .view-tabs { display: flex; gap: 1.4rem; border-bottom: 1px solid var(--rule); }
@@ -144,7 +146,7 @@ button:focus-visible, input:focus-visible, a:focus-visible, summary:focus-visibl
 @media (max-width: 720px) {
   .site-header, .page-shell { width: min(var(--max-width), calc(100% - 2rem)); }
   .controls { align-items: stretch; flex-direction: column; }
-  .sort-field { justify-content: space-between; }
+  .sort-field { width: 100%; justify-content: flex-start; }
   .search-field { width: 100%; }
   .month-rail { grid-template-columns: repeat(6, minmax(0, 1fr)); }
   .month-button { min-height: 2.7rem; }
