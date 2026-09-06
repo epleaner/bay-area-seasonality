@@ -44,9 +44,10 @@ const server = http.createServer((req, res) => {
     }
 
     const extension = path.extname(filePath);
+    const isMutable = extension === '.html' || extension === '.js' || extension === '.css' || extension === '.webmanifest';
     res.writeHead(200, {
       'Content-Type': types[extension] || 'application/octet-stream',
-      'Cache-Control': extension === '.html' ? 'no-cache' : 'public, max-age=3600'
+      'Cache-Control': isMutable ? 'no-cache' : 'public, max-age=3600'
     });
     res.end(data);
   });
