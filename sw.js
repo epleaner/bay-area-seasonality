@@ -1,4 +1,4 @@
-const CACHE = 'bay-area-seasonality-v3';
+const CACHE = 'bay-area-seasonality-v4';
 const CORE = ['/', '/index.html', '/styles.css', '/app.js', '/data/produce.json', '/manifest.webmanifest', '/icon.svg'];
 
 self.addEventListener('install', (event) => {

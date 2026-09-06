@@ -53,7 +53,6 @@ function renderNow() {
   const month = monthById(state.month);
   const items = filteredProduce(state.month);
   const grouped = Object.keys(CATEGORY_LABELS).map((category) => [category, items.filter((item) => item.category === category)]);
-  $('#current-month-stamp').textContent = month.name;
   $('#selected-month-season').textContent = `${month.season} / ${month.id.toString().padStart(2, '0')}`;
   $('#selected-month-title').textContent = month.name;
   $('#now-result-count').textContent = `${items.length} ${items.length === 1 ? 'item' : 'items'}`;

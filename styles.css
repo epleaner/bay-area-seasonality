@@ -31,21 +31,8 @@ button { color: inherit; }
 .skip-link:focus { transform: translateY(0); }
 
 .site-header { width: min(var(--max-width), calc(100% - 3rem)); margin: 0 auto; padding: 1.35rem 0 1.1rem; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--rule); }
-.brand-lockup, .text-button, .eyebrow, .now-stamp__label, .section-kicker, .month-selector__hint, .filter-button, .search-field, .result-count, .category-label, .season-chip, .footer-meta, .source-list__meta, .dialog-footnote { font-family: var(--utility); font-size: .68rem; letter-spacing: .08em; text-transform: uppercase; }
+.brand-lockup, .text-button, .section-kicker, .month-selector__hint, .filter-button, .search-field, .result-count, .category-label, .season-chip, .footer-meta, .source-list__meta, .dialog-footnote { font-family: var(--utility); font-size: .68rem; letter-spacing: .08em; text-transform: uppercase; }
 .brand-lockup { color: var(--muted); font-weight: 500; }
-.brand-mark, .footer-mark { color: var(--accent); margin-right: .5rem; }
-.brand-slash { color: var(--accent); margin: 0 .3rem; }
-.text-button { border: 0; padding: .4rem 0; background: transparent; color: var(--muted); cursor: pointer; }
-.text-button:hover { color: var(--accent); font-style: italic; }
-.intro { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 2rem; padding: 2.35rem 0 2rem; align-items: end; }
-.eyebrow, .section-kicker { margin: 0; color: var(--accent); font-weight: 500; }
-.eyebrow-dot { display: inline-block; width: .35rem; height: .35rem; margin: 0 .45rem .08rem; border-radius: 50%; background: var(--teal); }
-h1, h2, p { margin-top: 0; }
-h1 { max-width: 12ch; margin: 0; font-size: clamp(2.8rem, 6vw, 4.4rem); font-weight: 400; letter-spacing: -.06em; line-height: .9; }
-h1 em { color: var(--accent); font-style: normal; }
-.now-stamp { min-width: 10rem; padding: .9rem 1rem 1rem; border: 1px solid var(--accent); background: var(--accent-soft); }
-.now-stamp__label { display: block; color: var(--accent); }
-.now-stamp strong { display: block; margin-top: .7rem; color: var(--ink); font-size: 1.45rem; font-weight: 400; }
 
 .page-shell { width: min(var(--max-width), calc(100% - 3rem)); margin: 0 auto; }
 .view-tabs { display: flex; gap: 1.4rem; border-bottom: 1px solid var(--rule); }
@@ -132,8 +119,6 @@ h2 { margin: .35rem 0 0; font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 400; 
 button:focus-visible, input:focus-visible, a:focus-visible, summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 @media (max-width: 720px) {
   .site-header, .page-shell { width: min(var(--max-width), calc(100% - 2rem)); }
-  .intro { grid-template-columns: 1fr; gap: 1.5rem; padding-top: 3.8rem; }
-  .now-stamp { width: max-content; min-width: 9rem; }
   .controls { align-items: stretch; flex-direction: column; }
   .search-field { width: 100%; }
   .month-rail { grid-template-columns: repeat(6, minmax(0, 1fr)); }
@@ -146,7 +131,6 @@ button:focus-visible, input:focus-visible, a:focus-visible, summary:focus-visibl
   body { font-size: 17px; }
   .brand-lockup { font-size: .58rem; }
   .text-button { font-size: .6rem; }
-  h1 { font-size: 3rem; }
   .filter-button { flex: 1; padding-inline: .35rem; }
   .filter-group { width: 100%; }
   .month-selector__hint { font-size: .56rem; }
