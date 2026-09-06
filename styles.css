@@ -140,6 +140,7 @@ h2 { margin: .35rem 0 0; font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 400; 
 .dialog-footnote { margin: 1.2rem 0 0; color: var(--muted); font-size: .6rem; line-height: 1.5; text-transform: none; letter-spacing: .03em; }
 
 button:focus-visible, input:focus-visible, a:focus-visible, summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.search-field input:focus-visible { outline: 0; }
 @media (max-width: 720px) {
   .site-header, .page-shell { width: min(var(--max-width), calc(100% - 2rem)); }
   .controls { align-items: stretch; flex-direction: column; }
