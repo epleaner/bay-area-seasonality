@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#171412">
+  <meta name="description" content="A practical month-by-month guide to what's in season at Bay Area farmers markets.">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="icon" href="/icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/styles.css">
+  <title>Bay Area Seasonality</title>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  <header class="site-header">
+    <div class="brand-lockup">
+      <span class="brand-mark" aria-hidden="true">✳</span>
+      <span>FIELD NOTES <span class="brand-slash">/</span> BAY AREA</span>
+    </div>
+    <button class="text-button" id="sources-button" type="button">Sources <span aria-hidden="true">↗</span></button>
+  </header>
+
+  <main id="main-content" class="page-shell">
+    <section class="intro" aria-labelledby="page-title">
+      <div>
+        <p class="eyebrow">Local harvest guide <span class="eyebrow-dot" aria-hidden="true"></span> Updated September 2026</p>
+        <h1 id="page-title">What's good <em>now.</em></h1>
+        <p class="lede">A quick read on what is typically showing up at San Francisco Bay Area farmers markets.</p>
+      </div>
+      <div class="now-stamp" aria-label="Current month">
+        <span class="now-stamp__label">RIGHT NOW</span>
+        <strong id="current-month-stamp">—</strong>
+      </div>
+    </section>
+
+    <nav class="view-tabs" aria-label="Views" role="tablist">
+      <button class="view-tab is-active" id="now-tab" type="button" role="tab" aria-selected="true" aria-controls="now-view" data-view="now">Now</button>
+      <button class="view-tab" id="all-tab" type="button" role="tab" aria-selected="false" aria-controls="all-view" data-view="all">All months</button>
+    </nav>
+
+    <section class="controls" aria-label="Filter produce">
+      <div class="filter-group" role="group" aria-label="Produce type">
+        <button class="filter-button is-active" type="button" aria-pressed="true" data-filter="all">All <span class="filter-count" id="count-all">—</span></button>
+        <button class="filter-button" type="button" aria-pressed="false" data-filter="fruit">Fruit <span class="filter-count" id="count-fruit">—</span></button>
+        <button class="filter-button" type="button" aria-pressed="false" data-filter="vegetable">Veg <span class="filter-count" id="count-vegetable">—</span></button>
+        <button class="filter-button" type="button" aria-pressed="false" data-filter="herb">Herbs <span class="filter-count" id="count-herb">—</span></button>
+        <button class="filter-button" type="button" aria-pressed="false" data-filter="nut">Nuts <span class="filter-count" id="count-nut">—</span></button>
+      </div>
+      <label class="search-field">
+        <span class="sr-only">Search produce</span>
+        <span class="search-icon" aria-hidden="true">⌕</span>
+        <input id="search-input" type="search" placeholder="Search produce" autocomplete="off" spellcheck="false">
+        <kbd>/</kbd>
+      </label>
+    </section>
+
+    <section class="month-selector" aria-label="Choose a month">
+      <div class="month-selector__head">
+        <span class="section-kicker">Season map</span>
+        <span class="month-selector__hint">Select a month to browse</span>
+      </div>
+      <div class="month-rail" id="month-rail" role="tablist" aria-label="Months"></div>
+    </section>
+
+    <section class="content-view" id="now-view" role="tabpanel" aria-labelledby="now-tab">
+      <div class="view-heading">
+        <div>
+          <p class="section-kicker" id="selected-month-season">—</p>
+          <h2 id="selected-month-title">—</h2>
+        </div>
+        <p class="result-count" id="now-result-count">—</p>
+      </div>
+      <div class="produce-groups" id="now-groups"></div>
+    </section>
+
+    <section class="content-view" id="all-view" role="tabpanel" aria-labelledby="all-tab" hidden>
+      <div class="view-heading">
+        <div>
+          <p class="section-kicker">The whole year</p>
+          <h2>Browse by month</h2>
+        </div>
+        <p class="result-count" id="all-result-count">—</p>
+      </div>
+      <div class="month-overview" id="month-overview"></div>
+    </section>
+
+    <p class="empty-state" id="empty-state" hidden>No produce matches that search. Try a broader name.</p>
+
+    <footer class="site-footer">
+      <p><span class="footer-mark" aria-hidden="true">✳</span> Seasonality is a moving target. Availability varies by weather, farm, and variety.</p>
+      <p class="footer-meta">BAY AREA / MONTHLY VIEW / <span id="footer-year">2026</span></p>
+    </footer>
+  </main>
+
+  <dialog class="sources-dialog" id="sources-dialog" aria-labelledby="sources-title">
+    <div class="dialog-inner">
+      <button class="dialog-close" id="sources-close" type="button" aria-label="Close sources">×</button>
+      <p class="section-kicker">Research notes</p>
+      <h2 id="sources-title">Where this comes from</h2>
+      <p class="dialog-intro">This guide combines month-by-month listings with the longer-running Foodwise seasonality charts. Entries are normalized for searching; nothing here is a promise of availability.</p>
+      <div id="source-list" class="source-list"></div>
+      <p class="dialog-footnote">Last researched September 5, 2026. The data is intentionally month-level: farm and variety differences make tighter dates misleading.</p>
+    </div>
+  </dialog>
+
+  <script src="/app.js" type="module"></script>
+</body>
+</html>

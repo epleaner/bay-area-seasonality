@@ -1,0 +1,10 @@
+{
+  "name": "bay-area-seasonality",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A dark PWA for seasonal Bay Area produce",
+  "scripts": {
+    "start": "node server.js",
+    "check": "node --check server.js && node --check app.js && node -e \"JSON.parse(require('fs').readFileSync('data/produce.json'))\""
+  }
+}
