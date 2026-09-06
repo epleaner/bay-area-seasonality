@@ -97,6 +97,7 @@ h2 { margin: .35rem 0 0; font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 400; 
 .produce-name { font-size: 1.2rem; }
 .season-chip { flex: 0 0 auto; color: var(--muted); font-size: .58rem; letter-spacing: .03em; text-transform: none; }
 .season-chip.is-peak { color: var(--accent); }
+.season-chip.is-peak::before { content: 'peak'; text-transform: uppercase; }
 
 .month-overview { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1px; border: 1px solid var(--rule); background: var(--rule); }
 .month-card { min-height: 14rem; padding: 1.1rem; background: var(--panel); cursor: pointer; }

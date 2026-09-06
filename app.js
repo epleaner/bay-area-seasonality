@@ -37,7 +37,7 @@ function renderMonthRail() {
 
 function itemMarkup(item, month) {
   const isPeak = item.peak.includes(month);
-  return `<li class="produce-item"><span class="produce-name">${item.name}</span><span class="season-chip ${isPeak ? 'is-peak' : ''}">${isPeak ? 'peak' : 'in season'}</span></li>`;
+  return `<li class="produce-item"><span class="produce-name">${item.name}</span><span class="season-chip ${isPeak ? 'is-peak' : ''}">${isPeak ? '' : 'in season'}</span></li>`;
 }
 
 const CATEGORY_LABELS = { fruit: 'Fruit', vegetable: 'Vegetables', herb: 'Herbs', nut: 'Nuts' };
