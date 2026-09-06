@@ -106,7 +106,7 @@ function matrixCellMarkup(item, month) {
 function renderMatrix() {
   const category = matrixCategory();
   const items = matrixItems();
-  $('#matrix-title').textContent = `${CATEGORY_LABELS[category]} by month`;
+  $('#matrix-title').textContent = `${CATEGORY_LABELS[category]} seasonality`;
   $('#matrix-result-count').textContent = `${items.length} ${items.length === 1 ? 'row' : 'rows'}`;
   $('#matrix-shell').innerHTML = `<table class="matrix-table">
     <caption class="sr-only">${CATEGORY_LABELS[category]} seasonality by month</caption>
