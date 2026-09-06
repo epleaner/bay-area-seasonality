@@ -3,6 +3,7 @@ const state = {
   view: 'now',
   filter: 'all',
   query: '',
+  sort: 'peak',
   month: new Date().getMonth() + 1
 };
 
@@ -20,6 +21,16 @@ function filteredProduce(month = null) {
     const matchesFilter = state.filter === 'all' || item.category === state.filter;
     const matchesQuery = !query || normalized(item.name).includes(query) || normalized(item.id).includes(query);
     return matchesMonth && matchesFilter && matchesQuery;
+  });
+}
+
+function sortedProduce(items, month) {
+  return [...items].sort((a, b) => {
+    if (state.sort === 'peak') {
+      const peakDifference = Number(b.peak.includes(month)) - Number(a.peak.includes(month));
+      if (peakDifference) return peakDifference;
+    }
+    return normalized(a.name).localeCompare(normalized(b.name));
   });
 }
 
@@ -51,7 +62,7 @@ function groupMarkup(category, items) {
 
 function renderNow() {
   const month = monthById(state.month);
-  const items = filteredProduce(state.month);
+  const items = sortedProduce(filteredProduce(state.month), state.month);
   const grouped = Object.keys(CATEGORY_LABELS).map((category) => [category, items.filter((item) => item.category === category)]);
   $('#selected-month-season').textContent = `${month.season} / ${month.id.toString().padStart(2, '0')}`;
   $('#selected-month-title').textContent = month.name;
@@ -60,7 +71,7 @@ function renderNow() {
 }
 
 function monthCardMarkup(month) {
-  const items = filteredProduce(month.id);
+  const items = sortedProduce(filteredProduce(month.id), month.id);
   const grouped = Object.keys(CATEGORY_LABELS).map((category) => [category, items.filter((item) => item.category === category)]);
   const list = (group) => group.map((item) => `<span>${item.name}</span>`).join('');
   return `<article class="month-card ${month.id === state.month ? 'is-selected' : ''}" data-month-card="${month.id}" tabindex="0" role="button" aria-label="Browse ${month.name}">
@@ -76,6 +87,35 @@ function renderAll() {
   $('#month-overview').innerHTML = state.data.months.map(monthCardMarkup).join('');
 }
 
+function matrixCategory() {
+  return state.filter === 'all' ? 'fruit' : state.filter;
+}
+
+function matrixItems() {
+  return sortedProduce(filteredProduce().filter((item) => item.category === matrixCategory()), state.month);
+}
+
+function matrixCellMarkup(item, month) {
+  const isPeak = item.peak.includes(month.id);
+  const isInSeason = item.months.includes(month.id);
+  const status = isPeak ? 'peak' : isInSeason ? 'in-season' : 'off';
+  const label = isPeak ? 'Peak' : isInSeason ? 'In season' : 'Off season';
+  return `<td class="matrix-cell matrix-cell--${status}" data-state="${status}" aria-label="${month.name}: ${label}" title="${month.name}: ${label}"><span class="sr-only">${label}</span></td>`;
+}
+
+function renderMatrix() {
+  const category = matrixCategory();
+  const items = matrixItems();
+  $('#matrix-title').textContent = `${CATEGORY_LABELS[category]} by month`;
+  $('#matrix-result-count').textContent = `${items.length} ${items.length === 1 ? 'row' : 'rows'}`;
+  $('#matrix-shell').innerHTML = `<table class="matrix-table">
+    <caption class="sr-only">${CATEGORY_LABELS[category]} seasonality by month</caption>
+    <thead><tr><th scope="col">Produce</th>${state.data.months.map((month) => `<th scope="col">${month.short}</th>`).join('')}</tr></thead>
+    <tbody>${items.map((item) => `<tr><th scope="row">${item.name}</th>${state.data.months.map((month) => matrixCellMarkup(item, month)).join('')}</tr>`).join('')}</tbody>
+  </table>`;
+}
+
+
 function renderCounts() {
   const monthItems = state.data.produce.filter((item) => item.months.includes(state.month));
   $('#count-all').textContent = monthItems.length;
@@ -90,12 +130,17 @@ function render() {
   renderCounts();
   renderNow();
   renderAll();
-  const hasResults = state.view === 'now' ? filteredProduce(state.month).length > 0 : filteredProduce().length > 0;
+  renderMatrix();
+  const hasResults = state.view === 'now'
+    ? filteredProduce(state.month).length > 0
+    : state.view === 'matrix'
+      ? matrixItems().length > 0
+      : filteredProduce().length > 0;
   $('#empty-state').hidden = hasResults;
   $('#now-view').hidden = state.view !== 'now';
   $('#all-view').hidden = state.view !== 'all';
+  $('#matrix-view').hidden = state.view !== 'matrix';
 }
-
 function setView(view) {
   state.view = view;
   $$('.view-tab').forEach((tab) => {
@@ -113,6 +158,11 @@ function setFilter(filter) {
     button.classList.toggle('is-active', active);
     button.setAttribute('aria-pressed', active.toString());
   });
+  render();
+}
+
+function setSort(sort) {
+  state.sort = sort;
   render();
 }
 
@@ -145,6 +195,7 @@ $('#month-overview').addEventListener('keydown', (event) => {
 });
 $$('.view-tab').forEach((tab) => tab.addEventListener('click', () => setView(tab.dataset.view)));
 $$('.filter-button').forEach((button) => button.addEventListener('click', () => setFilter(button.dataset.filter)));
+$('#sort-select').addEventListener('change', (event) => setSort(event.target.value));
 $('#search-input').addEventListener('input', (event) => { state.query = event.target.value; render(); });
 document.addEventListener('keydown', (event) => {
   if (event.key === '/' && document.activeElement !== $('#search-input')) { event.preventDefault(); $('#search-input').focus(); }
