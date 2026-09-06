@@ -37,13 +37,12 @@ button { color: inherit; }
 .brand-slash { color: var(--accent); margin: 0 .3rem; }
 .text-button { border: 0; padding: .4rem 0; background: transparent; color: var(--muted); cursor: pointer; }
 .text-button:hover { color: var(--accent); font-style: italic; }
-.intro { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 2rem; padding: clamp(3rem, 8vw, 7rem) 0 clamp(2.5rem, 6vw, 5rem); align-items: end; }
+.intro { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 2rem; padding: 2.35rem 0 2rem; align-items: end; }
 .eyebrow, .section-kicker { margin: 0; color: var(--accent); font-weight: 500; }
 .eyebrow-dot { display: inline-block; width: .35rem; height: .35rem; margin: 0 .45rem .08rem; border-radius: 50%; background: var(--teal); }
 h1, h2, p { margin-top: 0; }
-h1 { max-width: 9ch; margin: .6rem 0 1rem; font-size: clamp(3.5rem, 10vw, 8rem); font-weight: 400; letter-spacing: -.065em; line-height: .85; }
+h1 { max-width: 12ch; margin: 0; font-size: clamp(2.8rem, 6vw, 4.4rem); font-weight: 400; letter-spacing: -.06em; line-height: .9; }
 h1 em { color: var(--accent); font-style: normal; }
-.lede { max-width: 40rem; margin: 0; color: var(--muted); font-size: clamp(1.1rem, 2vw, 1.35rem); line-height: 1.35; }
 .now-stamp { min-width: 10rem; padding: .9rem 1rem 1rem; border: 1px solid var(--accent); background: var(--accent-soft); }
 .now-stamp__label { display: block; color: var(--accent); }
 .now-stamp strong { display: block; margin-top: .7rem; color: var(--ink); font-size: 1.45rem; font-weight: 400; }
@@ -98,7 +97,6 @@ h2 { margin: .35rem 0 0; font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 400; 
 .produce-name { font-size: 1.2rem; }
 .season-chip { flex: 0 0 auto; color: var(--muted); font-size: .58rem; letter-spacing: .03em; text-transform: none; }
 .season-chip.is-peak { color: var(--accent); }
-.season-chip.is-peak::before { content: 'peak · '; text-transform: uppercase; }
 
 .month-overview { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1px; border: 1px solid var(--rule); background: var(--rule); }
 .month-card { min-height: 14rem; padding: 1.1rem; background: var(--panel); cursor: pointer; }
@@ -147,7 +145,7 @@ button:focus-visible, input:focus-visible, a:focus-visible, summary:focus-visibl
   body { font-size: 17px; }
   .brand-lockup { font-size: .58rem; }
   .text-button { font-size: .6rem; }
-  h1 { font-size: 4.2rem; }
+  h1 { font-size: 3rem; }
   .filter-button { flex: 1; padding-inline: .35rem; }
   .filter-group { width: 100%; }
   .month-selector__hint { font-size: .56rem; }
