@@ -43,7 +43,7 @@ button { color: inherit; }
 .view-tab:hover { color: var(--accent); }
 .controls { display: flex; gap: 1rem; justify-content: space-between; align-items: center; padding: 1.3rem 0; border-bottom: 1px solid var(--rule); }
 .filter-group { display: flex; gap: .35rem; }
-.filter-button { min-height: 2.2rem; padding: .45rem .7rem; border: 1px solid var(--rule); background: transparent; color: var(--muted); cursor: pointer; }
+.filter-button { min-height: 2.2rem; padding: .45rem .7rem; border: 1px solid var(--rule); background: transparent; color: var(--muted); cursor: pointer; white-space: nowrap; }
 .filter-button:hover { border-color: var(--accent); color: var(--ink); }
 .filter-button.is-active { border-color: var(--accent); background: var(--accent-soft); color: var(--accent); }
 .filter-count { margin-left: .35rem; color: inherit; opacity: .65; }
@@ -155,8 +155,8 @@ button:focus-visible, input:focus-visible, a:focus-visible, summary:focus-visibl
   body { font-size: 17px; }
   .brand-lockup { font-size: .58rem; }
   .text-button { font-size: .6rem; }
-  .filter-button { flex: 1; padding-inline: .35rem; }
-  .filter-group { width: 100%; }
+  .filter-button { flex: 1; padding-inline: .15rem; font-size: .54rem; }
+  .filter-group { width: 100%; gap: .1rem; }
   .month-selector__hint { font-size: .56rem; }
   .produce-item { min-height: 2.8rem; }
   .produce-name { font-size: 1.1rem; }
