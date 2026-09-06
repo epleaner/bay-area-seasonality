@@ -24,7 +24,7 @@
     <nav class="view-tabs" aria-label="Views" role="tablist">
       <button class="view-tab is-active" id="now-tab" type="button" role="tab" aria-selected="true" aria-controls="now-view" data-view="now">Now</button>
       <button class="view-tab" id="all-tab" type="button" role="tab" aria-selected="false" aria-controls="all-view" data-view="all">By month</button>
-      <button class="view-tab" id="matrix-tab" type="button" role="tab" aria-selected="false" aria-controls="matrix-view" data-view="matrix">All months</button>
+      <button class="view-tab" id="matrix-tab" type="button" role="tab" aria-selected="false" aria-controls="matrix-view" data-view="matrix">Full chart</button>
     </nav>
 
     <section class="controls" aria-label="Filter produce">
@@ -83,12 +83,12 @@
     <section class="content-view" id="matrix-view" role="tabpanel" aria-labelledby="matrix-tab" hidden>
       <div class="view-heading">
         <div>
-          <p class="section-kicker">All months</p>
+          <p class="section-kicker">Full chart</p>
           <h2 id="matrix-title">Fruit seasonality</h2>
         </div>
         <p class="result-count" id="matrix-result-count">—</p>
       </div>
-      <div class="matrix-legend" aria-label="All months legend">
+      <div class="matrix-legend" aria-label="Full chart legend">
         <span><i class="matrix-key matrix-key--off" aria-hidden="true"></i>Off season</span>
         <span><i class="matrix-key matrix-key--in" aria-hidden="true"></i>In season</span>
         <span><i class="matrix-key matrix-key--peak" aria-hidden="true"></i>Peak</span>
