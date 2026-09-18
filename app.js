@@ -46,9 +46,30 @@ function renderMonthRail() {
   `).join('');
 }
 
+const GUIDE_LABELS = { 'dirty-dozen': 'Dirty Dozen', 'clean-fifteen': 'Clean Fifteen' };
+
+function guideIconSvg(guide) {
+  if (guide === 'dirty-dozen') {
+    return '<svg viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="m10 2 8 15H2L10 2Z"></path><path d="M10 7v4.5M10 14.2v.1"></path></svg>';
+  }
+  return '<svg viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M17.5 3.2C10.8 3.4 5.5 5 3.9 9.3c-1.3 3.5 1.7 6.7 5 6.3 4.6-.7 7.7-4.9 8.6-12.4Z"></path><path d="M4.1 16.3c2.5-3.4 5.4-5.7 9-7.5"></path></svg>';
+}
+
+function guideIconMarkup(item) {
+  const label = GUIDE_LABELS[item.pesticideGuide];
+  if (!label) return '';
+  return `<span class="guide-icon guide-icon--${item.pesticideGuide}" role="img" aria-label="${label}" title="${label}">${guideIconSvg(item.pesticideGuide)}</span>`;
+}
+
+function renderGuideLegend() {
+  $('#produce-legend').innerHTML = Object.entries(GUIDE_LABELS).map(([guide, label]) => `
+    <span><span class="guide-icon guide-icon--${guide}" aria-hidden="true">${guideIconSvg(guide)}</span>${label}</span>
+  `).join('');
+}
+
 function itemMarkup(item, month) {
   const isPeak = item.peak.includes(month);
-  return `<li class="produce-item"><span class="produce-name">${item.name}</span><span class="season-chip ${isPeak ? 'is-peak' : ''}">${isPeak ? '' : 'in season'}</span></li>`;
+  return `<li class="produce-item"><span class="produce-name">${item.name}</span><span class="produce-meta">${guideIconMarkup(item)}<span class="season-chip ${isPeak ? 'is-peak' : ''}">${isPeak ? '' : 'in season'}</span></span></li>`;
 }
 
 const CATEGORY_LABELS = { fruit: 'Fruit', vegetable: 'Vegetables', herb: 'Herbs', nut: 'Nuts' };
@@ -128,6 +149,7 @@ function renderCounts() {
 function render() {
   renderMonthRail();
   renderCounts();
+  renderGuideLegend();
   renderNow();
   renderAll();
   renderMatrix();
