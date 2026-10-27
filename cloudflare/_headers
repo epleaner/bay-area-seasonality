@@ -1,0 +1,23 @@
+/data/*
+  Cache-Control: public, max-age=3600
+
+/icon.svg
+  Cache-Control: public, max-age=3600
+
+/
+  Cache-Control: no-cache
+
+/index.html
+  Cache-Control: no-cache
+
+/app.js
+  Cache-Control: no-cache
+
+/styles.css
+  Cache-Control: no-cache
+
+/manifest.webmanifest
+  Cache-Control: no-cache
+
+/sw.js
+  Cache-Control: no-cache
