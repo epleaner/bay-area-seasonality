@@ -1,0 +1,15 @@
+{
+  "name": "seasonality-cloudflare",
+  "private": true,
+  "type": "module",
+  "packageManager": "yarn@1.22.22",
+  "scripts": {
+    "dev": "node build-assets.js && cf dev",
+    "build": "node build-assets.js && cf build",
+    "deploy": "cf deploy --prebuilt"
+  },
+  "devDependencies": {
+    "cf": "1.0.0-beta.20",
+    "wrangler": "4.152.0"
+  }
+}

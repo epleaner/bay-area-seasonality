@@ -1,0 +1,48 @@
+name: Seasonality Worker
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: seasonality-production
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: cloudflare
+    env:
+      CF_SEND_TELEMETRY: 'false'
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version-file: .nvmrc
+      - name: Install and enable Corepack
+        run: npm install --global corepack@0.36.0 && corepack enable yarn
+      - name: Install deployment dependencies
+        run: yarn install --frozen-lockfile
+      - name: Check source
+        run: node --check ../app.js && node --check worker.js && node --check build-assets.js && node -e "JSON.parse(require('fs').readFileSync('../data/produce.json'))"
+      - name: Build Cloudflare artifact
+        run: yarn build
+      - name: Validate artifact without uploading
+        run: yarn cf deploy --prebuilt --dry-run
+      - name: Deploy prebuilt Worker
+        if: github.event_name != 'pull_request'
+        run: |
+          if [[ -z "$CLOUDFLARE_API_TOKEN" || "$CLOUDFLARE_API_TOKEN" == *[[:space:]]* ]]; then
+            echo "::error::CLOUDFLARE_API_TOKEN must be present without whitespace."
+            exit 1
+          fi
+          yarn deploy
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}

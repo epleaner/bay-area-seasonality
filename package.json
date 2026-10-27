@@ -4,7 +4,9 @@
   "private": true,
   "description": "A dark PWA for seasonal Bay Area produce",
   "scripts": {
-    "start": "node server.js",
-    "check": "node --check server.js && node --check app.js && node -e \"JSON.parse(require('fs').readFileSync('data/produce.json'))\""
+    "dev": "yarn --cwd cloudflare dev",
+    "build": "yarn --cwd cloudflare build",
+    "deploy": "yarn --cwd cloudflare deploy",
+    "check": "node --check app.js && node -e \"JSON.parse(require('fs').readFileSync('data/produce.json'))\""
   }
 }
