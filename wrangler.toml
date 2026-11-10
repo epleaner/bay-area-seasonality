@@ -1,0 +1,7 @@
+name = "bay-area-seasonality"
+main = "worker.js"
+compatibility_date = "2026-10-26"
+
+[assets]
+directory = "."
+binding = "ASSETS"
